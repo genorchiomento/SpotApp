@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
 import br.com.xnrstudio.spotapp.ui.auth.activity.AuthActivity
+import br.com.xnrstudio.spotapp.ui.products.activity.ProductListActivity
+import br.com.xnrstudio.spotapp.util.startNewActivity
 
 class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,8 +18,8 @@ class MainActivity : AppCompatActivity() {
     val userPreferences = UserPreferences(this)
 
     userPreferences.token.asLiveData().observe(this, Observer {
-      Toast.makeText(this, it ?: "Falha no login", Toast.LENGTH_LONG).show()
-      startActivity(Intent(this, AuthActivity::class.java))
+      val activity = if (it == null) AuthActivity::class.java else ProductListActivity::class.java
+      startNewActivity(activity)
     })
   }
 }

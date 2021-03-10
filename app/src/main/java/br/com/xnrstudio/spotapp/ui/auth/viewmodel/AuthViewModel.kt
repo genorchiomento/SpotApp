@@ -23,4 +23,8 @@ class AuthViewModel(
   ) = viewModelScope.launch {
     loginMutableLiveData.value = repository.login(username, password)
   }
+
+  fun saveToken(token: String) = viewModelScope.launch {
+    repository.saveToken(token)
+  }
 }

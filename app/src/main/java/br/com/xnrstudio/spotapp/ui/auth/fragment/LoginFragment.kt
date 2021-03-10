@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import br.com.xnrstudio.spotapp.databinding.FragmentLoginBinding
@@ -11,6 +12,10 @@ import br.com.xnrstudio.spotapp.repository.AuthRepository
 import br.com.xnrstudio.spotapp.repository.api.Resource
 import br.com.xnrstudio.spotapp.ui.BaseFragment
 import br.com.xnrstudio.spotapp.ui.auth.viewmodel.AuthViewModel
+import br.com.xnrstudio.spotapp.ui.products.activity.ProductListActivity
+import br.com.xnrstudio.spotapp.util.enable
+import br.com.xnrstudio.spotapp.util.startNewActivity
+import br.com.xnrstudio.spotapp.util.visible
 import kotlinx.coroutines.launch
 
 class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepository>() {
@@ -18,12 +23,16 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
 
+    binding.progressBarLogin.visible(false)
+    binding.btnLogin.enable(false)
+
     viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
+      binding.progressBarLogin.visible(false)
+
       when (it) {
         is Resource.Success -> {
-          lifecycleScope.launch {
-            userPreferences.saveToken(it.value.token)
-          }
+            viewModel.saveToken(it.value.token)
+            requireActivity().startNewActivity(ProductListActivity::class.java)
         }
 
         is Resource.Failure -> {
@@ -32,10 +41,15 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
       }
     })
 
+    binding.etFormPasswordLogin.addTextChangedListener {
+      val username = binding.etFormUsernameLogin.text.toString().trim()
+      binding.btnLogin.enable(username.isNotEmpty() && it.toString().isNotEmpty())
+    }
+
     binding.btnLogin.setOnClickListener {
       val username = binding.etFormUsernameLogin.text.toString().trim()
       val password = binding.etFormPasswordLogin.text.toString().trim()
-      //TODO fazer validacoes
+      binding.progressBarLogin.visible(true)
       viewModel.login(username, password)
     }
   }
@@ -51,7 +65,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
     false
   )
 
-  override fun getFragmentRepository() = AuthRepository(initRetrofit.apiService())
+  override fun getFragmentRepository() = AuthRepository(initRetrofit.apiService(), userPreferences)
 
 
 }
