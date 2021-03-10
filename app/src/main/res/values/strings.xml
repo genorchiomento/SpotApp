@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Spot App</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_password">Senha</string>
+    <string name="sign_in">Entrar</string>
+    <string name="content_description_logo_spotpromo">Logo da Spot</string>
+</resources>
