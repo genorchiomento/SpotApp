@@ -29,7 +29,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
 
       when (it) {
         is Resource.Success -> {
-          viewModel.saveToken(it.value.token)
+          it.value.token?.let { token -> viewModel.saveToken(token) }
           requireActivity().startNewActivity(ProductListActivity::class.java)
         }
 

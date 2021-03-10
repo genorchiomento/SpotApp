@@ -1,5 +1,6 @@
 package br.com.xnrstudio.spotapp.repository.api
 
+import br.com.xnrstudio.spotapp.repository.api.service.ProductListService
 import br.com.xnrstudio.spotapp.repository.api.service.SpotLoginService
 import br.com.xnrstudio.spotapp.util.Constants
 import okhttp3.OkHttpClient
@@ -27,5 +28,9 @@ class InitializeRetrofit {
 
   fun apiService(): SpotLoginService = retrofit.create(
     SpotLoginService::class.java
+  )
+
+  fun productService(token: String?): ProductListService = retrofit.create(
+    ProductListService::class.java
   )
 }
