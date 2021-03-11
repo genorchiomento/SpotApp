@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import br.com.xnrstudio.spotapp.databinding.FragmentProductListBinding
-import br.com.xnrstudio.spotapp.model.ProductResponse
-import br.com.xnrstudio.spotapp.model.ProductResponseItem
 import br.com.xnrstudio.spotapp.repository.ProductListRepository
 import br.com.xnrstudio.spotapp.repository.api.Resource
+import br.com.xnrstudio.spotapp.repository.api.service.ProductListService
 import br.com.xnrstudio.spotapp.ui.BaseFragment
 import br.com.xnrstudio.spotapp.ui.products.viewmodel.ProductListViewModel
+import br.com.xnrstudio.spotapp.util.handleApiError
 import br.com.xnrstudio.spotapp.util.visible
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -32,17 +31,14 @@ class ProductListFragment :
       when (it) {
         is Resource.Success -> {
           binding.progressBarList.visible(false)
-          updateList("sucesso")
+          updateList(it.value[0].desMarca.toString().trim())
         }
 
         is Resource.Loading -> {
           binding.progressBarList.visible(true)
         }
 
-        is Resource.Failure -> {
-          binding.progressBarList.visible(false)
-          updateList("falha")
-        }
+        is Resource.Failure -> handleApiError(it)
       }
     })
   }
@@ -66,7 +62,7 @@ class ProductListFragment :
 
   override fun getFragmentRepository(): ProductListRepository {
     val token = runBlocking { userPreferences.token.first() }
-    val api = initRetrofit.productService(token)
+    val api = initRetrofit.buildApi(ProductListService::class.java, token)
     return ProductListRepository(api)
   }
 }

@@ -6,4 +6,5 @@
   <string name="content_description_logo_spotpromo">Logo da Spot</string>
   <string name="errorNetworkCheckAgain">Por favor, verifique sua internet e tente novamente</string>
   <string name="errorSnackbar">Retry</string>
+  <string name="errorAuth">Usuário ou senha invalido</string>
 </resources>

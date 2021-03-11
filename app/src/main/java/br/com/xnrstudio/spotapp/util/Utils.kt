@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import br.com.xnrstudio.spotapp.R
 import br.com.xnrstudio.spotapp.repository.api.Resource
+import br.com.xnrstudio.spotapp.ui.auth.fragment.LoginFragment
 import com.google.android.material.snackbar.Snackbar
 
 fun <A : Activity> Activity.startNewActivity(activity: Class<A>) {
@@ -43,6 +44,11 @@ fun Fragment.handleApiError(
       getString(R.string.errorNetworkCheckAgain),
       retry
     )
+    failure.errorCode == 401 -> {
+      if (this is LoginFragment) {
+        requireView().snackbar(getString(R.string.errorAuth))
+      }
+    }
     else -> {
       val error = failure.errorBody?.string().toString()
       requireView().snackbar(error)

@@ -9,6 +9,6 @@ class ProductListRepository(
   suspend fun getProductList(
     token: String?
   ) = apiCall {
-    productApi.getProductList(token)
+    productApi.getProductList("Bearer $token")
   }
 }
