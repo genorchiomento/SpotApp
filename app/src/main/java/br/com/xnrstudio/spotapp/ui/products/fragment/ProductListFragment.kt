@@ -24,29 +24,26 @@ class ProductListFragment :
 
     binding.progressBarList.visible(false)
 
-    val token = runBlocking { userPreferences.token.first() }
-    viewModel.getProductList(token)
+    viewModel.getProductList()
 
-    viewModel.productList.observe(viewLifecycleOwner, Observer {
-      when (it) {
+    viewModel.productList.observe(viewLifecycleOwner, Observer { product ->
+      when (product) {
         is Resource.Success -> {
           binding.progressBarList.visible(false)
-          updateList(it.value[0].desMarca.toString().trim())
+          updateList(product.value[0].desMarca)
         }
 
         is Resource.Loading -> {
           binding.progressBarList.visible(true)
         }
 
-        is Resource.Failure -> handleApiError(it)
+        is Resource.Failure -> handleApiError(product)
       }
     })
   }
 
-  private fun updateList(productList: String) {
-    with(binding) {
-      tvMarcaProduto.text = productList
-    }
+  private fun updateList(productList: String) = with(binding) {
+    tvMarcaProduto.text = productList
   }
 
   override fun getViewModel() = ProductListViewModel::class.java

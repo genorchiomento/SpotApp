@@ -6,9 +6,5 @@ class ProductListRepository(
   private val productApi: ProductListService
 ) : BaseRepository() {
 
-  suspend fun getProductList(
-    token: String?
-  ) = apiCall {
-    productApi.getProductList("Bearer $token")
-  }
+  suspend fun getProductList() = apiCall { productApi.getProductList() }
 }

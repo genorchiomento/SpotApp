@@ -18,10 +18,8 @@ class ProductListViewModel(
   val productList: LiveData<Resource<ProductResponse>>
     get() = productListMutableLiveData
 
-  fun getProductList(
-    token: String?
-  ) = viewModelScope.launch {
+  fun getProductList() = viewModelScope.launch {
     productListMutableLiveData.value = Resource.Loading
-    productListMutableLiveData.value = repository.getProductList(token)
+    productListMutableLiveData.value = repository.getProductList()
   }
 }
