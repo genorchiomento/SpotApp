@@ -17,6 +17,7 @@ import br.com.xnrstudio.spotapp.util.enable
 import br.com.xnrstudio.spotapp.util.handleApiError
 import br.com.xnrstudio.spotapp.util.startNewActivity
 import br.com.xnrstudio.spotapp.util.visible
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepository>() {
@@ -27,18 +28,23 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
     binding.progressBarLogin.visible(false)
     binding.btnLogin.enable(false)
 
-    viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
-      binding.progressBarLogin.visible(it is Resource.Loading)
+    viewModel.loginResponse.observe(viewLifecycleOwner, Observer { bodyApi ->
+      binding.progressBarLogin.visible(bodyApi is Resource.Loading)
 
-      when (it) {
+      when (bodyApi) {
         is Resource.Success -> {
           lifecycleScope.launch {
-            it.value.token?.let { token -> viewModel.saveToken(token) }
-            requireActivity().startNewActivity(ProductListActivity::class.java)
+            bodyApi.value.token?.let { token -> viewModel.saveToken(token) }
+            //TODO: REMOVER LOGICA DE RETORNO 200 MESMO QUANDO DEVERIA SER UM RETORNO 401
+            if (!bodyApi.value.error) {
+              requireActivity().startNewActivity(ProductListActivity::class.java)
+            } else {
+              Snackbar.make(requireView(), bodyApi.value.msg, Snackbar.LENGTH_LONG).show()
+            }
           }
         }
 
-        is Resource.Failure -> handleApiError(it)
+        is Resource.Failure -> handleApiError(bodyApi)
       }
     })
 

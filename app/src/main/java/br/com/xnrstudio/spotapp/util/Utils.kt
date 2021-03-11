@@ -44,6 +44,7 @@ fun Fragment.handleApiError(
       getString(R.string.errorNetworkCheckAgain),
       retry
     )
+    //TODO: VERIFICAR SE BACKEND TRATOU O ERRO DE MOSTRAR 200 AO INVES DE 401
     failure.errorCode == 401 -> {
       if (this is LoginFragment) {
         requireView().snackbar(getString(R.string.errorAuth))
