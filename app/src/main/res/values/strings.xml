@@ -1,9 +1,9 @@
 <resources>
   <string name="app_name">Spot App</string>
-  <string name="hint_email">E-mail</string>
+  <string name="hint_email">Usuário</string>
   <string name="hint_password">Senha</string>
   <string name="sign_in">Entrar</string>
   <string name="content_description_logo_spotpromo">Logo da Spot</string>
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="errorNetworkCheckAgain">Por favor, verifique sua internet e tente novamente</string>
+  <string name="errorSnackbar">Retry</string>
 </resources>

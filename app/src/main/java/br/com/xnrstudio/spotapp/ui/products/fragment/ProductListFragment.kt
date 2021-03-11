@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import br.com.xnrstudio.spotapp.databinding.FragmentProductListBinding
+import br.com.xnrstudio.spotapp.model.ProductResponse
+import br.com.xnrstudio.spotapp.model.ProductResponseItem
 import br.com.xnrstudio.spotapp.repository.ProductListRepository
 import br.com.xnrstudio.spotapp.repository.api.Resource
 import br.com.xnrstudio.spotapp.ui.BaseFragment
@@ -29,11 +32,16 @@ class ProductListFragment :
       when (it) {
         is Resource.Success -> {
           binding.progressBarList.visible(false)
-          updateList("aaaaaaaaaxxx")
+          updateList("sucesso")
         }
 
         is Resource.Loading -> {
           binding.progressBarList.visible(true)
+        }
+
+        is Resource.Failure -> {
+          binding.progressBarList.visible(false)
+          updateList("falha")
         }
       }
     })

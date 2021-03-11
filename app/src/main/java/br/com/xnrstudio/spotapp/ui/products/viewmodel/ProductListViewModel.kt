@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 class ProductListViewModel(
   private val repository: ProductListRepository
 ) : ViewModel() {
+
   private val productListMutableLiveData: MutableLiveData<Resource<ProductResponse>> =
     MutableLiveData()
   val productList: LiveData<Resource<ProductResponse>>

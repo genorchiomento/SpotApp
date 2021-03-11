@@ -3,6 +3,10 @@ package br.com.xnrstudio.spotapp.util
 import android.app.Activity
 import android.content.Intent
 import android.view.View
+import androidx.fragment.app.Fragment
+import br.com.xnrstudio.spotapp.R
+import br.com.xnrstudio.spotapp.repository.api.Resource
+import com.google.android.material.snackbar.Snackbar
 
 fun <A : Activity> Activity.startNewActivity(activity: Class<A>) {
   Intent(this, activity).also {
@@ -18,4 +22,30 @@ fun View.visible(isVisible: Boolean) {
 fun View.enable(enabled: Boolean) {
   isEnabled = enabled
   alpha = if (enabled) 1f else 0.5f
+}
+
+fun View.snackbar(msg: String, action: (() -> Unit)? = null) {
+  val snackbar = Snackbar.make(this, msg, Snackbar.LENGTH_LONG)
+  action?.let {
+    snackbar.setAction(R.string.errorSnackbar) {
+      it()
+    }
+  }
+  snackbar.show()
+}
+
+fun Fragment.handleApiError(
+  failure: Resource.Failure,
+  retry: (() -> Unit)? = null
+) {
+  when {
+    failure.isNetworkError -> requireView().snackbar(
+      getString(R.string.errorNetworkCheckAgain),
+      retry
+    )
+    else -> {
+      val error = failure.errorBody?.string().toString()
+      requireView().snackbar(error)
+    }
+  }
 }
