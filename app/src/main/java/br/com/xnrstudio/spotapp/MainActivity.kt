@@ -2,7 +2,6 @@ package br.com.xnrstudio.spotapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
 import br.com.xnrstudio.spotapp.ui.auth.activity.AuthActivity
 import br.com.xnrstudio.spotapp.ui.products.activity.ProductListActivity
@@ -15,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     val userPreferences = UserPreferences(this)
 
-    userPreferences.token.asLiveData().observe(this, Observer {
+    userPreferences.token.asLiveData().observe(this, {
       val activity = if (it == null) AuthActivity::class.java else ProductListActivity::class.java
       startNewActivity(activity)
     })

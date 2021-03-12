@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import br.com.xnrstudio.spotapp.databinding.FragmentLoginBinding
 import br.com.xnrstudio.spotapp.repository.AuthRepository
@@ -28,7 +27,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
     binding.progressBarLogin.visible(false)
     binding.btnLogin.enable(false)
 
-    viewModel.loginResponse.observe(viewLifecycleOwner, Observer { bodyApi ->
+    viewModel.loginResponse.observe(viewLifecycleOwner, { bodyApi ->
       binding.progressBarLogin.visible(bodyApi is Resource.Loading)
 
       when (bodyApi) {

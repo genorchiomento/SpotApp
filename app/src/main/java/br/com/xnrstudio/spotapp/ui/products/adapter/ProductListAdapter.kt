@@ -14,7 +14,7 @@ import kotlin.collections.ArrayList
 
 class ProductListAdapter : RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {
 
-  var items = ArrayList<ProductResponseItem>()
+  private var items = ArrayList<ProductResponseItem>()
 
   fun setProductList(product: ArrayList<ProductResponseItem>) {
     this.items = product

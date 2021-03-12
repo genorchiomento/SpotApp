@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.xnrstudio.spotapp.databinding.FragmentProductListBinding
 import br.com.xnrstudio.spotapp.model.ProductResponse
@@ -31,7 +30,7 @@ class ProductListFragment :
 
     viewModel.getProductList()
 
-    viewModel.productList.observe(viewLifecycleOwner, Observer { product ->
+    viewModel.productList.observe(viewLifecycleOwner, { product ->
       when (product) {
         is Resource.Success -> {
           binding.progressBarList.visible(false)

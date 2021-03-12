@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <!-- Margins Size -->
-  <dimen name="default_margin">16dp</dimen>
   <dimen name="default_margin_top">16dp</dimen>
   <dimen name="margin_bottom_logo">32dp</dimen>
   <dimen name="margin_top_form_email">32dp</dimen>
@@ -12,18 +11,12 @@
 
   <!-- Paddings Size -->
   <dimen name="default_padding">16dp</dimen>
-  <dimen name="default_padding_right">16dp</dimen>
-  <dimen name="default_padding_left">16dp</dimen>
   <dimen name="default_padding_top">16dp</dimen>
   <dimen name="default_padding_bottom">16dp</dimen>
-
-  <!-- Buttons Size -->
-  <dimen name="button_login_padding">48dp</dimen>
 
   <!-- Fonts Size -->
   <dimen name="font_size_forms">18sp</dimen>
   <dimen name="font_size_button_login">18sp</dimen>
-
 
   <dimen name="card_view_product_height">90dp</dimen>
   <dimen name="card_view_corner_radius">6dp</dimen>
