@@ -1,7 +1,6 @@
 package br.com.xnrstudio.spotapp.repository.api
 
-import br.com.xnrstudio.spotapp.repository.api.service.SpotLoginService
-import br.com.xnrstudio.spotapp.util.Constants
+import br.com.xnrstudio.spotapp.util.Constants.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -13,19 +12,24 @@ class InitializeRetrofit {
     setLevel(HttpLoggingInterceptor.Level.BODY)
   }
 
-  private val client = OkHttpClient
-    .Builder()
-    .addInterceptor(logging)
-    .build()
-
-  private val retrofit = Retrofit
-    .Builder()
-    .baseUrl(Constants.BASE_URL)
-    .client(client)
-    .addConverterFactory(GsonConverterFactory.create())
-    .build()
-
-  fun apiService(): SpotLoginService = retrofit.create(
-    SpotLoginService::class.java
-  )
+  fun <Api> buildApi(
+    api: Class<Api>,
+    token: String? = null
+  ): Api {
+    return Retrofit.Builder()
+      .baseUrl(BASE_URL)
+      .client(
+        OkHttpClient.Builder()
+          .addInterceptor { chain ->
+            chain.proceed(chain.request().newBuilder().also {
+              it.addHeader("Authorization", "Bearer $token")
+            }.build())
+          }.also { client ->
+            client.addInterceptor(logging)
+          }.build()
+      )
+      .addConverterFactory(GsonConverterFactory.create())
+      .build()
+      .create(api)
+  }
 }

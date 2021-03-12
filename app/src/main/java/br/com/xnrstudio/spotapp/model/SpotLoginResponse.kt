@@ -10,7 +10,7 @@ data class SpotLoginResponse(
   @SerializedName("profile")
   val profile: Int,
   @SerializedName("token")
-  val token: String,
+  val token: String?,
   @SerializedName("userId")
   val userId: Int
 )

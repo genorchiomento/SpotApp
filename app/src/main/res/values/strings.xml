@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">Spot App</string>
-    <string name="hint_email">E-mail</string>
-    <string name="hint_password">Senha</string>
-    <string name="sign_in">Entrar</string>
-    <string name="content_description_logo_spotpromo">Logo da Spot</string>
+  <string name="app_name">Spot App</string>
+  <string name="hint_email">Usuário</string>
+  <string name="hint_password">Senha</string>
+  <string name="sign_in">Entrar</string>
+  <string name="content_description_logo_spotpromo">Logo da Spot</string>
+  <string name="errorNetworkCheckAgain">Por favor, verifique sua internet e tente novamente</string>
+  <string name="errorSnackbar">Retry</string>
+  <string name="errorAuth">Usuário ou senha invalido</string>
+    <string name="content_description_photo_product">Foto do produto</string>
 </resources>
