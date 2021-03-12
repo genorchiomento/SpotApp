@@ -1,4 +1,4 @@
-package br.com.xnrstudio.spotapp.ui.auth.viewmodel
+package br.com.xnrstudio.spotapp.ui.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

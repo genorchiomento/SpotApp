@@ -1,4 +1,4 @@
-package br.com.xnrstudio.spotapp.ui.products.viewmodel
+package br.com.xnrstudio.spotapp.ui.products
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

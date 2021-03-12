@@ -1,4 +1,4 @@
-package br.com.xnrstudio.spotapp.ui.products.fragment
+package br.com.xnrstudio.spotapp.ui.products
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,6 @@ import br.com.xnrstudio.spotapp.repository.api.Resource
 import br.com.xnrstudio.spotapp.repository.api.service.ProductListService
 import br.com.xnrstudio.spotapp.ui.BaseFragment
 import br.com.xnrstudio.spotapp.ui.products.adapter.ProductListAdapter
-import br.com.xnrstudio.spotapp.ui.products.viewmodel.ProductListViewModel
 import br.com.xnrstudio.spotapp.util.handleApiError
 import br.com.xnrstudio.spotapp.util.visible
 import kotlinx.coroutines.flow.first
