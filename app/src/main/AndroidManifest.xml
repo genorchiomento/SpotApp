@@ -12,10 +12,10 @@
     android:supportsRtl="true"
     android:theme="@style/Theme.SpotApp">
     <activity
-      android:name=".ui.products.activity.ProductListActivity"
+      android:name=".ui.products.ProductListActivity"
       android:screenOrientation="portrait" />
     <activity
-      android:name=".MainActivity"
+      android:name=".ui.MainActivity"
       android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".ui.auth.activity.AuthActivity"
+      android:name=".ui.auth.AuthActivity"
       android:screenOrientation="portrait" />
   </application>
 

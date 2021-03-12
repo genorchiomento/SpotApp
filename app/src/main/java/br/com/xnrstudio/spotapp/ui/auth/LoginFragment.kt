@@ -1,4 +1,4 @@
-package br.com.xnrstudio.spotapp.ui.auth.fragment
+package br.com.xnrstudio.spotapp.ui.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,7 @@ import br.com.xnrstudio.spotapp.repository.AuthRepository
 import br.com.xnrstudio.spotapp.repository.api.Resource
 import br.com.xnrstudio.spotapp.repository.api.service.SpotLoginService
 import br.com.xnrstudio.spotapp.ui.BaseFragment
-import br.com.xnrstudio.spotapp.ui.auth.viewmodel.AuthViewModel
-import br.com.xnrstudio.spotapp.ui.products.activity.ProductListActivity
+import br.com.xnrstudio.spotapp.ui.products.ProductListActivity
 import br.com.xnrstudio.spotapp.util.enable
 import br.com.xnrstudio.spotapp.util.handleApiError
 import br.com.xnrstudio.spotapp.util.startNewActivity

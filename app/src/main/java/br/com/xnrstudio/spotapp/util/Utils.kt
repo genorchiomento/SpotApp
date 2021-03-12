@@ -6,7 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import br.com.xnrstudio.spotapp.R
 import br.com.xnrstudio.spotapp.repository.api.Resource
-import br.com.xnrstudio.spotapp.ui.auth.fragment.LoginFragment
+import br.com.xnrstudio.spotapp.ui.auth.LoginFragment
 import com.google.android.material.snackbar.Snackbar
 
 fun <A : Activity> Activity.startNewActivity(activity: Class<A>) {

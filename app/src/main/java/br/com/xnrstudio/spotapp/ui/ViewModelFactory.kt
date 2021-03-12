@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import br.com.xnrstudio.spotapp.repository.AuthRepository
 import br.com.xnrstudio.spotapp.repository.BaseRepository
 import br.com.xnrstudio.spotapp.repository.ProductListRepository
-import br.com.xnrstudio.spotapp.ui.auth.viewmodel.AuthViewModel
-import br.com.xnrstudio.spotapp.ui.products.viewmodel.ProductListViewModel
+import br.com.xnrstudio.spotapp.ui.auth.AuthViewModel
+import br.com.xnrstudio.spotapp.ui.products.ProductListViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory(

@@ -1,10 +1,12 @@
-package br.com.xnrstudio.spotapp
+package br.com.xnrstudio.spotapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.asLiveData
-import br.com.xnrstudio.spotapp.ui.auth.activity.AuthActivity
-import br.com.xnrstudio.spotapp.ui.products.activity.ProductListActivity
+import br.com.xnrstudio.spotapp.R
+import br.com.xnrstudio.spotapp.UserPreferences
+import br.com.xnrstudio.spotapp.ui.auth.AuthActivity
+import br.com.xnrstudio.spotapp.ui.products.ProductListActivity
 import br.com.xnrstudio.spotapp.util.startNewActivity
 
 class MainActivity : AppCompatActivity() {
